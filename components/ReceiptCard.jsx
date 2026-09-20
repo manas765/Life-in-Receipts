@@ -1,5 +1,7 @@
+import PropTypes from "prop-types";
 import TypeIcon from "./TypeIcon";
 import { typeMeta, formatDate, formatAmount } from "../lib/receiptTypes";
+import { receiptShape } from "../lib/propTypes";
 import styles from "./ReceiptCard.module.css";
 
 export default function ReceiptCard({ receipt, onTrace }) {
@@ -34,3 +36,8 @@ export default function ReceiptCard({ receipt, onTrace }) {
     </article>
   );
 }
+
+ReceiptCard.propTypes = {
+  receipt: receiptShape.isRequired,
+  onTrace: PropTypes.func.isRequired,
+};

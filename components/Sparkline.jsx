@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./Sparkline.module.css";
 
 // Sums each receipt's amount into its month bucket (0-11) so the bar heights
@@ -47,3 +48,10 @@ export default function Sparkline({ receipts, color }) {
     </div>
   );
 }
+
+Sparkline.propTypes = {
+  receipts: PropTypes.arrayOf(
+    PropTypes.shape({ date: PropTypes.string.isRequired, amount: PropTypes.number })
+  ).isRequired,
+  color: PropTypes.string.isRequired,
+};

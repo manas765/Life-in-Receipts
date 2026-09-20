@@ -1,40 +1,28 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import PropTypes from "prop-types";
 import Hero from "./Hero";
 import ChapterNav from "./ChapterNav";
 import FilterBar from "./FilterBar";
 import ChapterSection from "./ChapterSection";
 import ChainDrawer from "./ChainDrawer";
 import Colophon from "./Colophon";
-import { RECEIPT_TYPES } from "../lib/receiptTypes";
+import { useReceiptFilters } from "../hooks/useReceiptFilters";
+import { useChainTrace } from "../hooks/useChainTrace";
+import { useGlobalStats } from "../hooks/useGlobalStats";
+import { receiptShape, chapterShape } from "../lib/propTypes";
 
-const ALL_TYPES = Object.keys(RECEIPT_TYPES);
-
-function matchesQuery(receipt, query) {
-  if (!query) return true;
-  const haystack = `${receipt.title} ${receipt.subtitle} ${receipt.detail || ""} ${receipt.tag || ""}`
-    .toLowerCase();
-  return haystack.includes(query.toLowerCase());
-}
-
+/**
+ * Top-level orchestration only: group receipts by chapter, wire the three
+ * state hooks (filters, chain trace, global stats) together, and lay out
+ * the page. All of the actual state logic lives in ./hooks — this file
+ * shouldn't need to change when that logic does.
+ */
 export default function Experience({ receipts, chapters }) {
-  const [activeTypes, setActiveTypes] = useState(() => new Set(ALL_TYPES));
-  const [query, setQuery] = useState("");
-  const [openChainId, setOpenChainId] = useState(null);
-
-  function toggleType(type) {
-    setActiveTypes((prev) => {
-      const next = new Set(prev);
-      if (next.has(type)) next.delete(type);
-      else next.add(type);
-      return next;
-    });
-  }
-
-  function resetTypes() {
-    setActiveTypes(new Set(ALL_TYPES));
-  }
+  const { activeTypes, query, setQuery, toggleType, resetTypes, isVisible } = useReceiptFilters();
+  const { openChainId, openChain, closeChain, chainReceipts } = useChainTrace(receipts);
+  const globalStats = useGlobalStats(receipts, chapters);
 
   const receiptsByChapter = useMemo(() => {
     const map = new Map();
@@ -45,29 +33,17 @@ export default function Experience({ receipts, chapters }) {
     return map;
   }, [receipts, chapters]);
 
-  const globalStats = useMemo(() => {
-    const chainCounts = new Map();
-    for (const r of receipts) {
-      if (!r.chainId) continue;
-      chainCounts.set(r.chainId, (chainCounts.get(r.chainId) || 0) + 1);
+  // Recomputed only when the filter/search state or the underlying data
+  // actually changes, not on every render (e.g. opening the chain drawer) —
+  // keeps the per-chapter card grids from re-filtering unnecessarily.
+  const filteredByChapter = useMemo(() => {
+    const map = new Map();
+    for (const chapter of chapters) {
+      const chapterReceipts = receiptsByChapter.get(chapter.id) || [];
+      map.set(chapter.id, chapterReceipts.filter(isVisible));
     }
-    const linkedChains = [...chainCounts.values()].filter((n) => n >= 2).length;
-    const totalHours = chapters.reduce((sum, c) => sum + (c.stats.listeningHours || 0), 0);
-    const years = chapters.map((c) => c.years);
-    return {
-      total: receipts.length,
-      chains: linkedChains,
-      hours: Math.round(totalHours),
-      span: `${years[0]}\u2013${years[years.length - 1]}`,
-    };
-  }, [receipts, chapters]);
-
-  const chainReceipts = useMemo(() => {
-    if (!openChainId) return [];
-    return receipts
-      .filter((r) => r.chainId === openChainId)
-      .sort((a, b) => new Date(a.date) - new Date(b.date));
-  }, [openChainId, receipts]);
+    return map;
+  }, [chapters, receiptsByChapter, isVisible]);
 
   return (
     <>
@@ -82,29 +58,25 @@ export default function Experience({ receipts, chapters }) {
       />
 
       <main className="container">
-        {chapters.map((chapter) => {
-          const chapterReceipts = receiptsByChapter.get(chapter.id) || [];
-          const filtered = chapterReceipts.filter(
-            (r) => activeTypes.has(r.type) && matchesQuery(r, query)
-          );
-          return (
-            <ChapterSection
-              key={chapter.id}
-              chapter={chapter}
-              allReceipts={chapterReceipts}
-              visibleReceipts={filtered}
-              onTrace={setOpenChainId}
-            />
-          );
-        })}
+        {chapters.map((chapter) => (
+          <ChapterSection
+            key={chapter.id}
+            chapter={chapter}
+            allReceipts={receiptsByChapter.get(chapter.id) || []}
+            visibleReceipts={filteredByChapter.get(chapter.id) || []}
+            onTrace={openChain}
+          />
+        ))}
       </main>
 
       <Colophon stats={globalStats} />
 
-      <ChainDrawer
-        receipts={chainReceipts}
-        onClose={() => setOpenChainId(null)}
-      />
+      <ChainDrawer receipts={chainReceipts} onClose={closeChain} />
     </>
   );
 }
+
+Experience.propTypes = {
+  receipts: PropTypes.arrayOf(receiptShape).isRequired,
+  chapters: PropTypes.arrayOf(chapterShape).isRequired,
+};

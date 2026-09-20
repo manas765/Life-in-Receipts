@@ -1,5 +1,6 @@
 "use client";
 
+import PropTypes from "prop-types";
 import TypeIcon from "./TypeIcon";
 import { RECEIPT_TYPES } from "../lib/receiptTypes";
 import styles from "./FilterBar.module.css";
@@ -49,3 +50,11 @@ export default function FilterBar({ query, onQueryChange, activeTypes, onToggleT
     </div>
   );
 }
+
+FilterBar.propTypes = {
+  query: PropTypes.string.isRequired,
+  onQueryChange: PropTypes.func.isRequired,
+  activeTypes: PropTypes.instanceOf(Set).isRequired,
+  onToggleType: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
+};

@@ -72,7 +72,23 @@
   padding: 24px 0;
 }
 
-@media (max-width: 900px) {
+.more {
+  display: block;
+  margin: 18px auto 0;
+  border: 1px solid var(--rule);
+  background: var(--paper-raised);
+  color: var(--carbon);
+  font-size: 13px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  min-height: 40px;
+}
+
+.more:hover {
+  background: var(--paper-dim);
+}
+
+@media (max-width: 1024px) {
   .layout {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -82,8 +98,16 @@
   }
 }
 
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+  }
+}
+
 @media (max-width: 480px) {
   .grid {
     grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 }

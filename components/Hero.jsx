@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./Hero.module.css";
 
 export default function Hero({ stats }) {
@@ -35,3 +36,12 @@ export default function Hero({ stats }) {
     </header>
   );
 }
+
+Hero.propTypes = {
+  stats: PropTypes.shape({
+    total: PropTypes.number.isRequired,
+    hours: PropTypes.number.isRequired,
+    chains: PropTypes.number.isRequired,
+    span: PropTypes.string.isRequired,
+  }).isRequired,
+};

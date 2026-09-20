@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import styles from "./ChapterNav.module.css";
+import { chapterShape } from "../lib/propTypes";
 
 export default function ChapterNav({ chapters }) {
   const [activeId, setActiveId] = useState(chapters[0]?.id);
@@ -47,3 +49,7 @@ export default function ChapterNav({ chapters }) {
     </nav>
   );
 }
+
+ChapterNav.propTypes = {
+  chapters: PropTypes.arrayOf(chapterShape).isRequired,
+};

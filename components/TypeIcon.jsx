@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const PATHS = {
   music: (
     <>
@@ -82,3 +84,9 @@ export default function TypeIcon({ type, size = 16, color = "currentColor" }) {
     </svg>
   );
 }
+
+TypeIcon.propTypes = {
+  type: PropTypes.string.isRequired,
+  size: PropTypes.number,
+  color: PropTypes.string,
+};

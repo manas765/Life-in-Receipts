@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styles from "./Colophon.module.css";
 
 export default function Colophon({ stats }) {
@@ -43,3 +44,9 @@ export default function Colophon({ stats }) {
     </footer>
   );
 }
+
+Colophon.propTypes = {
+  stats: PropTypes.shape({
+    chains: PropTypes.number.isRequired,
+  }).isRequired,
+};

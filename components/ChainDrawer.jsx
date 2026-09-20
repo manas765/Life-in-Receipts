@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 import TypeIcon from "./TypeIcon";
 import { typeMeta, formatDateTime } from "../lib/receiptTypes";
+import { receiptShape } from "../lib/propTypes";
 import styles from "./ChainDrawer.module.css";
 
 export default function ChainDrawer({ receipts, onClose }) {
@@ -67,3 +69,8 @@ export default function ChainDrawer({ receipts, onClose }) {
     </>
   );
 }
+
+ChainDrawer.propTypes = {
+  receipts: PropTypes.arrayOf(receiptShape).isRequired,
+  onClose: PropTypes.func.isRequired,
+};
