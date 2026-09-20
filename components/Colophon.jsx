@@ -14,15 +14,15 @@ export default function Colophon({ stats }) {
               than others.
             </p>
             <p className={styles.text}>
-              A handful of categories — photos, messages, searches, notes — don't exist in
-              either dataset, so they're reconstructed: anchored to a real transaction's date and
-              written to plausibly sit beside it. Cards marked "reconstructed" are these. Nothing
-              here claims to be a real photo or a real message; they're a guess at the shape of a
+              A handful of categories — photos, messages, searches, notes — don&rsquo;t exist in
+              either dataset, so they&rsquo;re reconstructed: anchored to a real transaction&rsquo;s date and
+              written to plausibly sit beside it. Cards marked &ldquo;reconstructed&rdquo; are these. Nothing
+              here claims to be a real photo or a real message; they&rsquo;re a guess at the shape of a
               day the data only half-records.
             </p>
             <p className={styles.text}>
               {stats.chains} moments turned out to have more than one receipt attached to them —
-              click "Trace this moment" on any card to follow the thread.
+              click &ldquo;Trace this moment&rdquo; on any card to follow the thread.
             </p>
           </div>
           <ul className={styles.sources}>
