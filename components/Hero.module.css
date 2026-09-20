@@ -1,0 +1,78 @@
+.hero {
+  position: relative;
+  background: var(--paper-raised);
+  padding: 96px 0 72px;
+  clip-path: polygon(
+    0% 0%, 100% 0%, 100% calc(100% - 14px),
+    97% 100%, 94% calc(100% - 14px), 91% 100%, 88% calc(100% - 14px),
+    85% 100%, 82% calc(100% - 14px), 79% 100%, 76% calc(100% - 14px),
+    73% 100%, 70% calc(100% - 14px), 67% 100%, 64% calc(100% - 14px),
+    61% 100%, 58% calc(100% - 14px), 55% 100%, 52% calc(100% - 14px),
+    49% 100%, 46% calc(100% - 14px), 43% 100%, 40% calc(100% - 14px),
+    37% 100%, 34% calc(100% - 14px), 31% 100%, 28% calc(100% - 14px),
+    25% 100%, 22% calc(100% - 14px), 19% 100%, 16% calc(100% - 14px),
+    13% 100%, 10% calc(100% - 14px), 7% 100%, 4% calc(100% - 14px),
+    1% 100%, 0% calc(100% - 14px)
+  );
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin-bottom: 18px;
+}
+
+.title {
+  font-size: clamp(40px, 7vw, 78px);
+  line-height: 1.02;
+  max-width: 14ch;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--stamp);
+}
+
+.lede {
+  margin-top: 22px;
+  max-width: 54ch;
+  font-size: 18px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statValue {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  color: var(--ink);
+}
+
+.statLabel {
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 64px 0 56px;
+  }
+  .stats {
+    gap: 20px;
+  }
+}

@@ -1,0 +1,77 @@
+[
+  {
+    "id": "2015",
+    "label": "First Signals",
+    "years": "2015",
+    "blurb": "You spent 59.2 hours with The Script this year, and 35.8% of it happened after midnight. Most of what you paid for went toward Other — 62,960 INR in total, 42 small decisions that added up to a year.",
+    "stats": {
+      "receiptCount": 114,
+      "totalSpent": 62960.0,
+      "topCategory": "Other",
+      "listeningHours": 59.2,
+      "topArtist": "The Script",
+      "nightOwlPct": 35.8,
+      "totalPlays": 2809
+    }
+  },
+  {
+    "id": "2016",
+    "label": "Building Momentum",
+    "years": "2016",
+    "blurb": "The Beatles was the constant — 197.6 hours of them, mostly late. Money moved differently this year: Investment took the largest share of 86,137 INR across 53 receipts.",
+    "stats": {
+      "receiptCount": 125,
+      "totalSpent": 86137.0,
+      "topCategory": "Investment",
+      "listeningHours": 197.6,
+      "topArtist": "The Beatles",
+      "nightOwlPct": 23.7,
+      "totalPlays": 6413
+    }
+  },
+  {
+    "id": "2017",
+    "label": "The Turn",
+    "years": "2017",
+    "blurb": "A year mostly spent on Food (137,750 INR, 104 receipts) with The Beatles playing underneath it — 670.6 hours, 19.9% past midnight.",
+    "stats": {
+      "receiptCount": 213,
+      "totalSpent": 137750.1,
+      "topCategory": "Food",
+      "listeningHours": 670.6,
+      "topArtist": "The Beatles",
+      "nightOwlPct": 19.9,
+      "totalPlays": 26320
+    }
+  },
+  {
+    "id": "2018",
+    "label": "Coming Together",
+    "years": "2018",
+    "blurb": "You spent 474.2 hours with The Beatles this year, and 29.1% of it happened after midnight. Most of what you paid for went toward Food — 23,036 INR in total, 59 small decisions that added up to a year.",
+    "stats": {
+      "receiptCount": 145,
+      "totalSpent": 23035.96,
+      "topCategory": "Food",
+      "listeningHours": 474.2,
+      "topArtist": "The Beatles",
+      "nightOwlPct": 29.1,
+      "totalPlays": 14817
+    }
+  },
+  {
+    "id": "2023",
+    "label": "Six Years Later",
+    "years": "2023",
+    "blurb": "Six years on, the receipts look different. No more late-night listening logs — just boarding passes and new cities. 22 places, paid for and moved through.",
+    "stats": {
+      "receiptCount": 49,
+      "totalSpent": 203462.74,
+      "topCategory": "travel",
+      "listeningHours": 0,
+      "topArtist": "—",
+      "nightOwlPct": 0,
+      "totalPlays": 0
+    }
+  }
+]

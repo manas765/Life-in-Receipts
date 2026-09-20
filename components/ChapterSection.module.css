@@ -1,0 +1,89 @@
+.section {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  scroll-margin-top: 90px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.intro {
+  position: sticky;
+  top: 78px;
+}
+
+.year {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin-bottom: 6px;
+}
+
+.label {
+  font-size: 30px;
+  margin-bottom: 14px;
+}
+
+.blurb {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.pills {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+}
+
+.pill {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.pillLabel {
+  color: var(--ink-faint);
+}
+
+.pillValue {
+  font-family: var(--font-mono);
+  color: var(--ink);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(216px, 1fr));
+  gap: 12px;
+}
+
+.empty {
+  color: var(--ink-faint);
+  font-size: 14px;
+  padding: 24px 0;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .intro {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
